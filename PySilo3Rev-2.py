@@ -204,7 +204,7 @@ def update_misp_event(misp_instance, event, isight_alert):
       return False
 
    #silobreaker stuff added by dmolna213
-   if isight_alert.Type='Email':
+   if isight_alert.Type=='Email':
       default_comment==isight_alert.EntityReference
    else: 
       default_comment = ''
@@ -667,7 +667,7 @@ def create_misp_event(misp_instance,isight_report_instance):
         misp_instance.tag(my_event, 'basf:technology="OT"')
     if 'Cyber Crime' in isight_report_instance.ThreatScape:
         misp_instance.tag(my_event, 'veris:actor:external:variety="Organized crime"')
- update_misp_event(misp_instance, my_event, isight_report_instance)
+update_misp_event(misp_instance, my_event, isight_report_instance)
 
 
 ################################start################################
