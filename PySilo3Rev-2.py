@@ -634,7 +634,7 @@ def create_misp_event(misp_instance,isight_report_instance):
     else:
         event.threat_level_id = 4  # Unknown
     event.analysis = 2  # Completed
-    event.info = "iSIGHT: " + isight_report_instance.title
+    event.info = "SiloBreaker: " + isight_report_instance.Description
     #event.date = date
 
     # Push the event to the MISP server.
