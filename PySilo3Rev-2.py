@@ -524,7 +524,7 @@ def process_isight_indicator(a_json):
             thread_limiter.acquire()
         #PySilo_settings.logger.debug("max number %s current number: ", thread_limiter._initial_value, )
 
-        # Parse the FireEye iSight report
+        # Parse the Silobreaker report
         isight_report_instance = PySiloReport(a_json)
 
        # If in DEBUG mode, write the iSight reports to a file.
