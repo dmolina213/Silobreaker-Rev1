@@ -466,8 +466,8 @@ def update_misp_event(misp_instance, event, isight_alert):
     # This command expects the event ID instead of a MISPevent as argument.
    print('#####publishing event:', event['id'])
    PySilo_settings.logger.debug('#####publishing event: %s', event['id'],isight_alert.ID) 
-   event.attribute.add_tag('ISIGHT APIv3')                                                
-   #misp_instance.publish(event['id'], alert=False)
+   event.attribute.add_tag('SiloBreaker')                                                
+   misp_instance.publish(event['id'], alert=False)
 
 
 
