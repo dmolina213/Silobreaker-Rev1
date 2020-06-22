@@ -642,14 +642,14 @@ def create_misp_event(misp_instance,isight_report_instance):
     print("#######Push event to MISP server####",my_event)
 
            
-    PySilo_settings.logger.debug('Created MISP event %s for iSight report %s', event, isight_report_instance.reportId)
+    PySilo_settings.logger.debug('Created MISP event %s for iSight report %s', event, isight_report_instance.Id)
 
     # Add default tags to the event.
     misp_instance.tag(my_event, 'Source:SILOBREAKER')
     #misp_instance.tag(my_event, 'basf:source="iSight"')
     misp_instance.tag(my_event, 'CTI feed: SILOBREAKER')
     misp_instance.tag(my_event, 'tlp:amber')
-    #misp_instance.tag(my_event, 'report id', isight_report_instance.reportId)
+    misp_instance.tag(my_event, 'report id', isight_report_instance.Id)
     
                                                                      
 
