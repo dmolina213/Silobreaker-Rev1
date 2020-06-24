@@ -119,7 +119,7 @@ def misp_process_isight_indicators(a_result):
     # Process each indicator in the JSON message
 
     for indicator in a_result['Items']:
-        Print("#####indicator#####",indicator)
+        print("#####indicator#####",indicator)
         PySilo_settings.logger.debug('Processing report %s', indicator['Id'])
 
         if PySilo_settings.use_threading:
@@ -134,7 +134,8 @@ def misp_process_isight_indicators(a_result):
         else:
             # No threading
             print('***no threading***')
-            process_isight_indicator(indicator)
+            PySilo_settings.logger.debug('Processing indicator %s', indicator['Id'])
+            #process_isight_indicator(indicator)
 
 
 
