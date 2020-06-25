@@ -198,7 +198,7 @@ def update_misp_event(misp_instance, event, isight_alert):
    # Verify that misp_instance is of the correct type
    #if not isinstance(misp_instance, PyMISP):
    if not isinstance(misp_instance, ExpandedPyMISP):
-      PySilo_settings.logger.debug('update_misp_event:Silobreaker Attributes)
+      PySilo_settings.logger.debug('update_misp_event:Silobreaker Attributes')
       return False
 
    #silobreaker stuff added by dmolna213
