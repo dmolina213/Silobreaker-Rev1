@@ -118,7 +118,7 @@ def misp_process_isight_indicators(a_result):
 
     for indicator in a_result['Items']:
         print("#####indicator#####",indicator)
-        PySilo_settings.logger.debug('Processing report %s', indicator['Id'])
+        PySilo_settings.logger.debug('I am at line #121 Processing report %s', indicator['Id'])
 
         if PySilo_settings.use_threading:
             # Use threads to process the indicators
@@ -132,6 +132,7 @@ def misp_process_isight_indicators(a_result):
         else:
             # No threading
             print('***no threading***')
+            PySilo_settings.logger.debug('I am at line #135 process_isight_indicator %s', indicator)
             process_isight_indicator(indicator)
  
 def misp_check_for_previous_event(misp_instance, isight_alert):
