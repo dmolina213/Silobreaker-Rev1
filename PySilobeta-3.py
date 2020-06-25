@@ -194,14 +194,16 @@ def update_misp_event(misp_instance, event, isight_alert):
 
 
 
-   PySilo_settings.logger.debug('Updating the event %s', event)
+   PySilo_settings.logger.debug('update_misp_event:Updating the event %s', event)
    # Verify that misp_instance is of the correct type
    #if not isinstance(misp_instance, PyMISP):
    if not isinstance(misp_instance, ExpandedPyMISP):
-      PySilo_settings.logger.debug('Parameter misp_instance is not a PyMISP object')
+      PySilo_settings.logger.debug('update_misp_event:Silobreaker Attributes)
       return False
 
    #silobreaker stuff added by dmolna213
+   PySilo_settings.logger.debug('update_misp_event:Parameter misp_instance is not a PyMISP object')
+   PySilo_settings.logger.debug('update_misp_event:Type %s',isight_alert.Type)
    if isight_alert.Type=='Email':
       default_comment=isight_alert.EntityReference
    else: 
@@ -255,7 +257,8 @@ def update_misp_event(misp_instance, event, isight_alert):
     #added by dmolina213.
    if isight_alert.Description:
         # If emailLanguage is provided, add it to the default comment.
-        if isight_alert.Type==Email:
+        PySilo_settings.logger.debug('update_misp_event260:Parameter misp_instance is not a PyMISP object')
+        if isight_alert.Type=='Email':
             add_comment = 'VA Compromised Email: ' + isight_alert.Type + isight_alert.EntityReference
             if default_comment == '':
                 email_comment = add_comment
