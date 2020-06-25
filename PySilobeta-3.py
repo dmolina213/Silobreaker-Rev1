@@ -277,8 +277,7 @@ def update_misp_event(misp_instance, event, isight_alert):
         if isight_alert.recipient:
             #email_object.add_attribute('to', value=isight_alert.recipient, to_ids=False)
         if isight_alert.senderDomain:
-            domain_attribute = event.add_attribute(category='Network activity', type='domain',
-                                                   value=isight_alert.senderDomain, to_ids=False)
+            domain_attribute = event.add_attribute(category='Network activity', type='domain',value=isight_alert.senderDomain, to_ids=False)
             email_object.add_reference(domain_attribute.uuid, 'derived-from', comment='Email source domain')
         # Lastly, add the object to the event.
         PySilo_settings.logger.debug('Adding object to event %s',email_object)
