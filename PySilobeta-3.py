@@ -721,7 +721,8 @@ else:
 
     final_url = url + "&apiKey=" + apiKey + "&digest=" + urllib.parse.quote(digest.decode())
     req = urllib.request.Request(final_url)
-
+    Pylo_settings.logger.debug('final_url #%s',final_url)
+    Pylo_settings.logger.debug('req is %s',req)
 
 # Perform the request
 
