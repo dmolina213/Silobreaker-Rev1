@@ -577,7 +577,7 @@ def process_isight_indicator(a_json):
         # Without a MISP instance this does not make sense
         if this_misp_instance is False:
             raise ValueError("No MISP instance found.")
-            PySilo_settings.logger.debug("No MISP Instance found: ", this_misp_instance )     
+            PySilo_settings.logger.debug("process_isight_indicator: No MISP Instance found: ", this_misp_instance )     
             
         # Acquire a semaphore (decrease the counter in the semaphore).
         #threading used here
@@ -600,12 +600,12 @@ def process_isight_indicator(a_json):
             f.close()
 
         # Check whether we already have an event for this reportID.
-        PySilo_settings.logger.debug('Checking for existing event with report ID %s', isight_report_instance.Id)
+        PySilo_settings.logger.debug('process_isight_indicator:Checking for existing event with report ID %s', isight_report_instance.Id)
         event_id = misp_check_for_previous_event(this_misp_instance, isight_report_instance)
 
         if not event_id:
             # Create a new MISP event
-            PySilo_settings.logger.debug('No event found for report ID %s -- will create a new one')
+            PySilo_settings.logger.debug('process_isight_indicator:No event found for report ID %s -- will create a new one')
             print('***create new MISP event****')
             create_misp_event(this_misp_instance, isight_report_instance)
             ###added 5-12-2020 by dmolina
