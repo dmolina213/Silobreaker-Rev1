@@ -132,7 +132,8 @@ def misp_process_isight_indicators(a_result):
         else:
             # No threading
             print('***no threading***')
-            PySilo_settings.logger.debug('I am at line #135 process_isight_indicator %s', indicator)
+            PySilo_settings.logger.debug('135:*********************%s', indicator)
+            PySilo_settings.logger.debug('135:process_isight_indicator %s', indicator)
             process_isight_indicator(indicator)
  
 def misp_check_for_previous_event(misp_instance, isight_alert):
