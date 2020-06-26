@@ -467,7 +467,7 @@ def update_misp_event(misp_instance, event, isight_alert):
    print('#####publishing event:', event['id'])
    PySilo_settings.logger.debug('#####publishing event: %s', event['id'],isight_alert.ID) 
    event.attribute.add_tag('ISIGHT APIv3')                                                
-   #misp_instance.publish(event['id'], alert=False)
+   misp_instance.publish(event['id'], alert=False)
 
     # Create a new MISP event.
 def create_misp_event(misp_instance, isight_report_instance):
