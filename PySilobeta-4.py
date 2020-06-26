@@ -260,8 +260,8 @@ def update_misp_event(misp_instance, event, isight_alert):
     #added by dmolina213.
    if isight_alert.Description:
         # If emailLanguage is provided, add it to the default comment.
-        PySilo_settings.logger.debug('update_misp_event260:Parameter misp_instance is not a PyMISP object')
-        if isight_alert.Type=='Email':
+        #PySilo_settings.logger.debug('update_misp_event260:Parameter misp_instance is not a PyMISP object')
+        if isight_alert.Type:
             add_comment = 'VA Compromised Email: ' + isight_alert.Type + isight_alert.Description
             if default_comment == '':
                 email_comment = add_comment
@@ -270,7 +270,9 @@ def update_misp_event(misp_instance, event, isight_alert):
         else:
             email_comment = default_comment
         # Create the object.
+        PySilo_settings.logger.debug('update_misp_event273:Create Object')
         email_object = MISPObject('email')
+        PySilo_settings.logger.debug('update_misp_event273:Create Object %s',email_object)
         email_object.comment = email_comment
         # Add attributes to the object.
         if isight_alert.Description:
@@ -503,7 +505,7 @@ def create_misp_event(misp_instance, isight_report_instance):
     else:
         event.threat_level_id = 4  # Unknown
     event.analysis = 2  # Completed
-    event.info = "Silobreaker: " + isight_report_instance.Description
+    event.info = "Silobreaker:Compromised VA Credentials " + isight_report_instance.Description
     event.date = date
 
     # Push the event to the MISP server.
