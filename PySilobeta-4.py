@@ -510,7 +510,7 @@ def create_misp_event(misp_instance, isight_report_instance):
 
            
     PySilo_settings.logger.debug('create_misp_event 474:Created MISP event %s for iSight report %s', event, isight_report_instance.Id)
-
+    PySilo_settings.logger.debug('create_misp_event 474:Created MISP event %s for iSight report %s', my_event, isight_report_instance.Id)
     # Add default tags to the event.
     misp_instance.tag(my_event, 'Source:SILOBREAKER')
     #misp_instance.tag(my_event, 'basf:source="iSight"')
