@@ -203,12 +203,12 @@ def update_misp_event(misp_instance, event, isight_alert):
       return False
 
    #silobreaker stuff added by dmolna213
-   #PySilo_settings.logger.debug('update_misp_event:Parameter misp_instance is not a PyMISP object')
-   PySilo_settings.logger.debug('update_misp_event:Type %s',isight_alert.Type)
-   PySilo_settings.logger.debug('update_misp_event:EntityReference %s',isight_alert.EntityReference) 
+   #PySilo_settings.logger.debug('update_misp_event:Parameter misp_instance is not a PyMISP object')F
+   PySilo_settings.logger.debug('208:update_misp_event:Type %s',isight_alert.Type)
+   PySilo_settings.logger.debug('208:update_misp_event:Description %s',isight_alert.Description) 
    if isight_alert.Type:
     #if isight_alert.Type=='Email':
-      default_comment=isight_alert.EntityReference
+      default_comment=isight_alert.Description
    else: 
       default_comment = 'Compromised Email'
 
