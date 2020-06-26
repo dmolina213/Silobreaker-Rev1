@@ -262,7 +262,7 @@ def update_misp_event(misp_instance, event, isight_alert):
         # If emailLanguage is provided, add it to the default comment.
         PySilo_settings.logger.debug('update_misp_event260:Parameter misp_instance is not a PyMISP object')
         if isight_alert.Type=='Email':
-            add_comment = 'VA Compromised Email: ' + isight_alert.Type + isight_alert.EntityReference
+            add_comment = 'VA Compromised Email: ' + isight_alert.Type + isight_alert.Description
             if default_comment == '':
                 email_comment = add_comment
             else:
@@ -276,7 +276,7 @@ def update_misp_event(misp_instance, event, isight_alert):
         if isight_alert.Description:
             email_object.add_attribute('from', value=isight_alert.Description, to_ids=False)
         if isight_alert.EntityReference:
-            email_object.add_attribute('from-display-name', value=isight_alert.EntityReference, to_ids=False)
+            email_object.add_attribute('from-display-name', value=isight_alert.Description, to_ids=False)
         #if isight_alert.sourceIP:
          #   email_object.add_attribute('ip-src', value=isight_alert.sourceIP, to_ids=email_ids)
         if isight_alert.Id:
