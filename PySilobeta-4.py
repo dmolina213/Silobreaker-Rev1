@@ -203,12 +203,14 @@ def update_misp_event(misp_instance, event, isight_alert):
       return False
 
    #silobreaker stuff added by dmolna213
-   PySilo_settings.logger.debug('update_misp_event:Parameter misp_instance is not a PyMISP object')
+   #PySilo_settings.logger.debug('update_misp_event:Parameter misp_instance is not a PyMISP object')
    PySilo_settings.logger.debug('update_misp_event:Type %s',isight_alert.Type)
-   if isight_alert.Type=='Email':
+   PySilo_settings.logger.debug('update_misp_event:EntityReference %s',isight_alert.EntityReference) 
+   if isight_alert.Type:
+    #if isight_alert.Type=='Email':
       default_comment=isight_alert.EntityReference
    else: 
-      default_comment = ''
+      default_comment = 'Compromised Email'
 
    # Determine whether the to_ids flag shall be set.
 
