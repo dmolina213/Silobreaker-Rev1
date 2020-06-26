@@ -598,6 +598,7 @@ def process_isight_indicator(a_json):
             if not os.path.exists("Silo-reports-2020"):
                 os.makedirs("Silo-reports-2020")
             f = open("Silo-reports-2020/" + isight_report_instance.Id, 'a')
+            PySilo_settings.logger.debug('600:*******************************************************')
             PySilo_settings.logger.debug('600:creating Silo-reports-2020/%s', isight_report_instance.Id)
             # Write the iSight report into the "reports" subdirectory.
             PySilo_settings.logger.debug('creating report report ID %s in reports/', isight_report_instance.Id)
@@ -605,11 +606,13 @@ def process_isight_indicator(a_json):
             f.close()
 
         # Check whether we already have an event for this reportID.
+        PySilo_settings.logger.debug('606:*******************************************************')
         PySilo_settings.logger.debug('606 process_isight_indicator:Checking for existing event with report ID %s', isight_report_instance.Id)
         event_id = misp_check_for_previous_event(this_misp_instance, isight_report_instance)
 
         if not event_id:
             # Create a new MISP event
+            PySilo_settings.logger.debug('612:*******************************************************')
             PySilo_settings.logger.debug('612:process_isight_indicator:No event found for report ID %s -- will create a new one')
             print('***create new MISP event****')
             create_misp_event(this_misp_instance, isight_report_instance)
@@ -686,7 +689,8 @@ parser.add_argument("-P", "--POST", help="perform a POST request. Data can be mo
 args = parser.parse_args()
 
 url = parse.quote(args.URL, safe=":/?&=")
-
+PySilo_settings.logger.debug('692:*******************************************************')
+PySilo_settings.logger.debug('692:url is %s',url)
 with open("secrets.json") as f: # The secrets file has the same format as the node example.
     secrets = json.load(f)
 
@@ -722,6 +726,7 @@ else:
     # Fetch the data
 
     final_url = url + "&apiKey=" + apiKey + "&digest=" + urllib.parse.quote(digest.decode())
+    PySilo_settings.logger.debug('729:final_url is %s', final_url)
     req = urllib.request.Request(final_url)
     PySilo_settings.logger.debug('final_url #%s',final_url)
     PySilo_settings.logger.debug('req is %s',req)
