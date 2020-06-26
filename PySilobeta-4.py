@@ -685,7 +685,7 @@ def get_misp_instance():
 
 
 #url = parse.quote(args.URL, safe=":/?&=")
-url=https://api.silobreaker.com/v1/heat?q=doctype:paste%20AND%20entitytype:hash&tq=emaildomain%2A:va.gov
+url="https://api.silobreaker.com/v1/heat?q=doctype:paste%20AND%20entitytype:hash&tq=emaildomain%2A:va.gov"
 PySilo_settings.logger.debug('692:*******************************************************')
 PySilo_settings.logger.debug('692:url is %s',url)
 with open("secrets.json") as f: # The secrets file has the same format as the node example.
@@ -693,40 +693,23 @@ with open("secrets.json") as f: # The secrets file has the same format as the no
 
 sharedKey = secrets["SharedKey"]
 apiKey = secrets["ApiKey"]
+verb = "GET"
+message = verb + " " + url
 
-if args.POST:
-    verb = "POST"
-    with open('post_data.json', 'rb') as f:
-        body = f.read()
 
-    # Sign the URL
-    urlSignature = verb + " " + url
-    message = urlSignature.encode() + body
 
-    hmac_sha1 = hmac.new(sharedKey.encode(), message, digestmod=hashlib.sha1)
-    digest = base64.b64encode(hmac_sha1.digest())
+# Sign the URL
 
-    # Fetch the data
+hmac_sha1 = hmac.new(sharedKey.encode(), message.encode(), digestmod=hashlib.sha1)
+digest = base64.b64encode(hmac_sha1.digest())
 
-    final_url = url + "?apiKey=" + apiKey + "&digest=" + urllib.parse.quote(digest.decode())
-    req = urllib.request.Request(final_url, data=body, headers={'Content-Type': 'application/json'})
+# Fetch the data
 
-else:
-    verb = "GET"
-    message = verb + " " + url
-
-    # Sign the URL
-
-    hmac_sha1 = hmac.new(sharedKey.encode(), message.encode(), digestmod=hashlib.sha1)
-    digest = base64.b64encode(hmac_sha1.digest())
-
-    # Fetch the data
-
-    final_url = url + "&apiKey=" + apiKey + "&digest=" + urllib.parse.quote(digest.decode())
-    PySilo_settings.logger.debug('729:final_url is %s', final_url)
-    req = urllib.request.Request(final_url)
-    PySilo_settings.logger.debug('final_url #%s',final_url)
-    PySilo_settings.logger.debug('req is %s',req)
+final_url = url + "&apiKey=" + apiKey + "&digest=" + urllib.parse.quote(digest.decode())
+PySilo_settings.logger.debug('729:final_url is %s', final_url)
+req = urllib.request.Request(final_url)
+PySilo_settings.logger.debug('final_url #%s',final_url)
+PySilo_settings.logger.debug('req is %s',req)
 
 # Perform the request
 
