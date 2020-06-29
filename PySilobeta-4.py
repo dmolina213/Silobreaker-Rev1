@@ -156,7 +156,7 @@ def misp_check_for_previous_event(misp_instance, isight_alert):
 
     #Search based on report ID.
     if isight_alert.Description:
-        result = misp_instance.search(value=isight_alert.Description, type_attribute='text', category='Payload delivery')
+        result = misp_instance.search(value=isight_alert.Type, type_attribute='email-src', category='Payload delivery')
         PySilo_settings.logger.debug('160 event found %s',result)
         # If something was found in the MISP instance, then retrieve the event
        
